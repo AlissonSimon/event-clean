@@ -11,6 +11,7 @@ public record Event(
         String identifier,
         String location,
         String organizer,
+        Integer capacity,
         EventType type,
         LocalDateTime startedAt,
         LocalDateTime finishedAt
