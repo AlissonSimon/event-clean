@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:18-alpine
+    container_name: event-clean-db
+    environment:
+      POSTGRES_DB: event-clean
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5433:5432"
+    restart: always
