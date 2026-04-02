@@ -15,7 +15,7 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public FindEventsUseCaseImpl findEvents(EventGateway eventGateway) {
+    public FindEventsUseCase findEvents(EventGateway eventGateway) {
         return new FindEventsUseCaseImpl(eventGateway);
     }
 }
