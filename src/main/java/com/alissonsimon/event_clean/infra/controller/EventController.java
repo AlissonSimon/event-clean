@@ -7,9 +7,13 @@ import com.alissonsimon.event_clean.infra.dto.EventRequest;
 import com.alissonsimon.event_clean.infra.dto.EventResponse;
 import com.alissonsimon.event_clean.infra.mapper.EventDtoMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -29,8 +33,11 @@ public class EventController {
     }
 
     @PostMapping
-    public EventResponse createEvent(@RequestBody EventRequest request) {
+    public ResponseEntity<Map<String, Object>> createEvent(@RequestBody EventRequest request) {
         Event newEvent = createEventUseCase.execute(mapper.toDomain(request));
-        return mapper.toDto(newEvent);
+        Map<String, Object> response = new HashMap<>();
+        response.put("Message", "Event created successful in database");
+        response.put("Event data", mapper.toDto(newEvent));
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
