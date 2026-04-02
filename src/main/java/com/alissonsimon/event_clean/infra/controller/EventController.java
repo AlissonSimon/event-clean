@@ -2,6 +2,7 @@ package com.alissonsimon.event_clean.infra.controller;
 
 import com.alissonsimon.event_clean.core.domain.Event;
 import com.alissonsimon.event_clean.core.useCases.CreateEventUseCase;
+import com.alissonsimon.event_clean.core.useCases.FindEventByIdentifierUseCase;
 import com.alissonsimon.event_clean.core.useCases.FindEventsUseCase;
 import com.alissonsimon.event_clean.infra.dto.EventRequest;
 import com.alissonsimon.event_clean.infra.dto.EventResponse;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class EventController {
     private final FindEventsUseCase findEventsUseCase;
+    private final FindEventByIdentifierUseCase findEventByIdentifierUseCase;
     private final CreateEventUseCase createEventUseCase;
     private final EventDtoMapper mapper;
 
@@ -30,6 +32,13 @@ public class EventController {
                 .stream()
                 .map(mapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping(value = "/{identifier}")
+    public ResponseEntity<EventResponse> findEventByIdentifier(@PathVariable String identifier) {
+        Event event = findEventByIdentifierUseCase.execute(identifier);
+        EventResponse response = mapper.toDto(event);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping

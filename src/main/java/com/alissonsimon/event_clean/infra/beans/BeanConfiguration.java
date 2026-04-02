@@ -1,9 +1,7 @@
 package com.alissonsimon.event_clean.infra.beans;
 
 import com.alissonsimon.event_clean.core.gateway.EventGateway;
-import com.alissonsimon.event_clean.core.useCases.CreateEventUseCase;
-import com.alissonsimon.event_clean.core.useCases.CreateEventUseCaseImpl;
-import com.alissonsimon.event_clean.core.useCases.FindEventsUseCaseImpl;
+import com.alissonsimon.event_clean.core.useCases.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,5 +15,10 @@ public class BeanConfiguration {
     @Bean
     public FindEventsUseCase findEvents(EventGateway eventGateway) {
         return new FindEventsUseCaseImpl(eventGateway);
+    }
+
+    @Bean
+    public FindEventByIdentifierUseCaseImpl findEventByIdentifier(EventGateway eventGateway) {
+        return new FindEventByIdentifierUseCaseImpl(eventGateway);
     }
 }
