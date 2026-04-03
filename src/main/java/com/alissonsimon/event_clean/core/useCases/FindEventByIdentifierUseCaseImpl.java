@@ -2,7 +2,7 @@ package com.alissonsimon.event_clean.core.useCases;
 
 import com.alissonsimon.event_clean.core.domain.Event;
 import com.alissonsimon.event_clean.core.gateway.EventGateway;
-import com.alissonsimon.event_clean.infra.exception.NotFoundEventException;
+import com.alissonsimon.event_clean.core.exception.NotFoundEventException;
 
 public class FindEventByIdentifierUseCaseImpl implements FindEventByIdentifierUseCase {
     private final EventGateway gateway;

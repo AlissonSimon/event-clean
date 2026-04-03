@@ -1,5 +1,7 @@
 package com.alissonsimon.event_clean.infra.exception;
 
+import com.alissonsimon.event_clean.core.exception.DuplicateEventException;
+import com.alissonsimon.event_clean.core.exception.NotFoundEventException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
